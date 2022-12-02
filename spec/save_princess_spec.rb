@@ -19,6 +19,13 @@ RSpec.describe SavePrincess do
       @game.bot_starting_postion(@m, @grid)
       expect(@game.bot_index[0]).to eq(1)
       expect(@game.bot_index[1]).to eq(1)
+      expect(@game.bot_index.length).to eq(2)
+    end
+    it '.princess_location sets @princess_index to coordinates' do
+      @game.princess_location(@m, @grid)
+      expect(@game.princess_index[0]).to eq(2)
+      expect(@game.princess_index[1]).to eq(0)
+      expect(@game.princess_index.length).to eq(2)
     end
   end
   describe 'displayPathtoPrincess' do

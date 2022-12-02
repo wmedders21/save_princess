@@ -32,6 +32,11 @@ RSpec.describe SavePrincess do
     it 'returns a string' do
       expect(@game.displayPathtoPrincess(@m, @grid)).to be_a(String)
     end
+    it 'prints each move on a new line' do
+      expect do
+        @game.displayPathtoPrincess(@m, @grid)
+      end.to output("DOWN\nLEFT\n").to_stdout
+    end
   end
 end
 

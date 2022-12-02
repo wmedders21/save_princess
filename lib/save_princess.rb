@@ -18,4 +18,9 @@ class SavePrincess
     @bot_index = [location, location]
   end
 
+  def princess_location(m, grid)
+    row = grid.find { |row| row.include?("p") }
+    @princess_index << grid.index(row)
+    @princess_index << row.index("p")
+  end
 end

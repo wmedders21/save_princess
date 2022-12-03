@@ -1,6 +1,5 @@
 require 'rspec'
 require_relative '../lib/save_princess'
-require 'pry'
 
 RSpec.describe '.displayPathtoPrincess' do
   context 'grid is 3x3, bot is located in center, princess is located in corner' do

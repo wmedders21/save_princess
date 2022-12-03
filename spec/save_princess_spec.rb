@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../lib/save_princess.rb'
+require_relative '../lib/save_princess'
 require 'pry'
 
 RSpec.describe '.displayPathtoPrincess' do
@@ -9,28 +9,28 @@ RSpec.describe '.displayPathtoPrincess' do
     end
 
     it 'prints each direction on a new line. Case: princess in TOP LEFT' do
-      grid = ["p--", "-m-", "---"]
+      grid = ['p--', '-m-', '---']
       expect do
         displayPathtoPrincess(@m, grid)
       end.to output("UP\nLEFT\n").to_stdout
     end
 
     it 'prints each direction on a new line. Case: princess in TOP RIGHT' do
-      grid = ["--p", "-m-", "---"]
+      grid = ['--p', '-m-', '---']
       expect do
         displayPathtoPrincess(@m, grid)
       end.to output("UP\nRIGHT\n").to_stdout
     end
 
     it 'prints each direction on a new line. Case: princess in BOTTOM LEFT' do
-      grid = ["---", "-m-", "p--"]
+      grid = ['---', '-m-', 'p--']
       expect do
         displayPathtoPrincess(@m, grid)
       end.to output("DOWN\nLEFT\n").to_stdout
     end
 
     it 'prints each direction on a new line. Case: princess in BOTTOM RIGHT' do
-      grid = ["---", "-m-", "--p"]
+      grid = ['---', '-m-', '--p']
       expect do
         displayPathtoPrincess(@m, grid)
       end.to output("DOWN\nRIGHT\n").to_stdout
@@ -39,14 +39,14 @@ RSpec.describe '.displayPathtoPrincess' do
 
   describe SavePrincess do
     it 'has attributes' do
-      game = SavePrincess.new(5, ["p----", "-----", "--m--", "-----", "-----"])
+      game = SavePrincess.new(5, ['p----', '-----', '--m--', '-----', '-----'])
       expect(game.princess_index).to eq([])
       expect(game.bot_index).to eq([2, 2])
     end
 
     describe 'instance methods' do
       it 'find_princess updates the state of @princess_index' do
-        game = SavePrincess.new(5, ["p----", "-----", "--m--", "-----", "-----"])
+        game = SavePrincess.new(5, ['p----', '-----', '--m--', '-----', '-----'])
         expect(game.princess_index).to eq([])
 
         game.find_princess
@@ -56,4 +56,3 @@ RSpec.describe '.displayPathtoPrincess' do
     end
   end
 end
-

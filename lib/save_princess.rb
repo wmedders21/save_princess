@@ -5,18 +5,18 @@ def displayPathtoPrincess(m, grid)
   until game.bot_index == game.princess_index
     if game.bot_index[0] < game.princess_index[0]
       game.bot_index[0] += 1
-      puts "DOWN"
+      puts 'DOWN'
     else
       game.bot_index[0] -= 1
-      puts "UP"
+      puts 'UP'
     end
 
     if game.bot_index[1] < game.princess_index[1]
       game.bot_index[1] += 1
-      puts "RIGHT"
+      puts 'RIGHT'
     else
       game.bot_index[1] -= 1
-      puts "LEFT"
+      puts 'LEFT'
     end
   end
 end
@@ -32,7 +32,7 @@ class SavePrincess
   end
 
   def find_princess
-    row = @grid.find { |row| row.include?("p") }
-    @princess_index = [@grid.index(row), row.index("p")]
+    row = @grid.find { |row| row.include?('p') }
+    @princess_index = [@grid.index(row), row.index('p')]
   end
 end

@@ -1,4 +1,3 @@
-require 'pry'
 require 'rspec'
 require_relative '../lib/save_princess_2'
 

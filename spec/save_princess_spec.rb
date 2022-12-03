@@ -1,40 +1,58 @@
 require 'rspec'
-require './lib/save_princess.rb'
+require_relative '../lib/save_princess'
 require 'pry'
 
-RSpec.describe 'save_princess' do
-  before :each do
-    @m = 3
-    @grid = Array.new(@m)
-    @grid[0] = "---"
-    @grid[1] = "-m-"
-    @grid[2] = "p--"
-  end
-  
-  describe 'helper methods' do
-    it '.bot_starting_postion sets @bot_index to coordinates' do
-      bot_starting_postion(@m, @grid)
-      expect(@bot_index[0]).to eq(1)
-      expect(@bot_index[1]).to eq(1)
-      expect(@bot_index.length).to eq(2)
+RSpec.describe '.displayPathtoPrincess' do
+  context 'grid is 3x3, bot is located in center, princess is located in corner' do
+    before :each do
+      @m = 3
     end
-    it '.princess_location sets @princess_index to coordinates' do
-      princess_location(@m, @grid)
-      expect(@princess_index[0]).to eq(2)
-      expect(@princess_index[1]).to eq(0)
-      expect(@princess_index.length).to eq(2)
+
+    it 'prints each direction on a new line. Case: princess in TOP LEFT' do
+      grid = ['p--', '-m-', '---']
+      expect do
+        displayPathtoPrincess(@m, grid)
+      end.to output("UP\nLEFT\n").to_stdout
+    end
+
+    it 'prints each direction on a new line. Case: princess in TOP RIGHT' do
+      grid = ['--p', '-m-', '---']
+      expect do
+        displayPathtoPrincess(@m, grid)
+      end.to output("UP\nRIGHT\n").to_stdout
+    end
+
+    it 'prints each direction on a new line. Case: princess in BOTTOM LEFT' do
+      grid = ['---', '-m-', 'p--']
+      expect do
+        displayPathtoPrincess(@m, grid)
+      end.to output("DOWN\nLEFT\n").to_stdout
+    end
+
+    it 'prints each direction on a new line. Case: princess in BOTTOM RIGHT' do
+      grid = ['---', '-m-', '--p']
+      expect do
+        displayPathtoPrincess(@m, grid)
+      end.to output("DOWN\nRIGHT\n").to_stdout
     end
   end
 
-  describe 'displayPathtoPrincess' do
-    it 'returns a string' do
-      expect(displayPathtoPrincess(@m, @grid)).to be_a(String)
+  describe SavePrincess do
+    it 'has attributes' do
+      game = SavePrincess.new(5, ['p----', '-----', '--m--', '-----', '-----'])
+      expect(game.princess_index).to eq([])
+      expect(game.bot_index).to eq([2, 2])
     end
-    it 'prints each move on a new line' do
-      expect do
-        displayPathtoPrincess(@m, @grid)
-      end.to output("DOWN\nLEFT\n").to_stdout
+
+    describe 'instance methods' do
+      it 'find_princess updates the state of @princess_index' do
+        game = SavePrincess.new(5, ['p----', '-----', '--m--', '-----', '-----'])
+        expect(game.princess_index).to eq([])
+
+        game.find_princess
+
+        expect(game.princess_index).to eq([0, 0])
+      end
     end
   end
 end
-

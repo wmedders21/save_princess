@@ -1,6 +1,3 @@
-require 'pry'
-# attr_reader :bot_index, :princess_index
-
 @bot_index = []
 @princess_index = []
 

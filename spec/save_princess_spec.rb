@@ -36,5 +36,24 @@ RSpec.describe '.displayPathtoPrincess' do
       end.to output("DOWN\nRIGHT\n").to_stdout
     end
   end
+
+  describe SavePrincess do
+    it 'has attributes' do
+      game = SavePrincess.new(5, ["p----", "-----", "--m--", "-----", "-----"])
+      expect(game.princess_index).to eq([])
+      expect(game.bot_index).to eq([2, 2])
+    end
+
+    describe 'instance methods' do
+      it 'find_princess updates the state of @princess_index' do
+        game = SavePrincess.new(5, ["p----", "-----", "--m--", "-----", "-----"])
+        expect(game.princess_index).to eq([])
+
+        game.find_princess
+
+        expect(game.princess_index).to eq([0, 0])
+      end
+    end
+  end
 end
 

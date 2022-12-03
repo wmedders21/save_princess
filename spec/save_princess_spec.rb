@@ -1,4 +1,5 @@
 require 'rspec'
+require_relative './spec_helper'
 require_relative '../lib/save_princess'
 
 RSpec.describe '.displayPathtoPrincess' do
@@ -33,6 +34,42 @@ RSpec.describe '.displayPathtoPrincess' do
       expect do
         displayPathtoPrincess(@m, grid)
       end.to output("DOWN\nRIGHT\n").to_stdout
+    end
+  end
+
+  context 'Testing all remaining allowable grid sizes' do
+    (5..100).step(2).to_a.each do |size|
+      before :each do
+        @m = size
+      end
+
+      it 'prints each direction on a new line. Case: princess in TOP LEFT' do
+        grid = SpecHelper.make_grids(@m)[0]
+        expect do
+          displayPathtoPrincess(@m, grid)
+        end.to output("UP\nLEFT\n" * (@m / 2)).to_stdout
+      end
+
+      it 'prints each direction on a new line. Case: princess in TOP RIGHT' do
+        grid = SpecHelper.make_grids(@m)[2]
+        expect do
+          displayPathtoPrincess(@m, grid)
+        end.to output("UP\nRIGHT\n" * (@m / 2)).to_stdout
+      end
+
+      it 'prints each direction on a new line. Case: princess in BOTTOM LEFT' do
+        grid = SpecHelper.make_grids(@m)[1]
+        expect do
+          displayPathtoPrincess(@m, grid)
+        end.to output("DOWN\nLEFT\n" * (@m / 2)).to_stdout
+      end
+
+      it 'prints each direction on a new line. Case: princess in BOTTOM RIGHT' do
+        grid = SpecHelper.make_grids(@m)[3]
+        expect do
+          displayPathtoPrincess(@m, grid)
+        end.to output("DOWN\nRIGHT\n" * (@m / 2)).to_stdout
+      end
     end
   end
 

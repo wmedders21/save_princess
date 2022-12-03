@@ -26,6 +26,8 @@ def displayPathtoPrincess(m, grid)
   return ""
 end
 
+private
+
 def bot_starting_postion(m, grid)
   location = grid.index(grid.find { |row| row.include?("m") })
   @bot_index = [location, location]
